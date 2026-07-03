@@ -126,8 +126,13 @@ app.post("/make-video", async (req, res) => {
     const videoPath = path.join(tmpDir, `${id}.mp4`);
 
     const imageResponse = await axios.get(imageUrl, {
-      responseType: "arraybuffer"
-    });
+  responseType: "arraybuffer",
+  maxRedirects: 5,
+  headers: {
+    "User-Agent": "tts-render-server/1.0",
+    "Accept": "image/*,*/*;q=0.8"
+  }
+});
 
     fs.writeFileSync(imagePath, Buffer.from(imageResponse.data));
 
