@@ -58,7 +58,7 @@ app.post("/tts", async (req, res) => {
       createdAt: Date.now()
     });
 
-    const baseUrl = `${req.protocol}://${req.get("host")}`;
+    const baseUrl = "https://tts-render-server.onrender.com";
 
     res.json({
       success: true,
