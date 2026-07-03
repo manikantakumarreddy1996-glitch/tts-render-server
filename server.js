@@ -151,7 +151,7 @@ app.post("/make-video", async (req, res) => {
           "-b:a 192k",
           "-pix_fmt yuv420p",
           "-shortest",
-          "-vf scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2"
+          "-vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920"
         ])
         .save(videoPath)
         .on("end", resolve)
