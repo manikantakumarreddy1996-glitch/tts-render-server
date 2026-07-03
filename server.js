@@ -145,13 +145,17 @@ app.post("/make-video", async (req, res) => {
         .inputOptions(["-loop 1"])
         .input(audioPath)
         .outputOptions([
-          "-c:v libx264",
-          "-tune stillimage",
-          "-c:a aac",
-          "-b:a 192k",
-          "-pix_fmt yuv420p",
-          "-shortest",
-          "-vf scale=720:1280:force_original_aspect_ratio=increase,crop=720:1280"
+           "-c:v libx264",
+  "-preset ultrafast",
+  "-threads 1",
+  "-tune stillimage",
+  "-c:a aac",
+  "-b:a 128k",
+  "-pix_fmt yuv420p",
+  "-shortest",
+  "-movflags +faststart",
+  "-vf",
+  "scale=720:1280:force_original_aspect_ratio=increase,crop=720:1280"
         ])
         .save(videoPath)
         .on("end", resolve)
